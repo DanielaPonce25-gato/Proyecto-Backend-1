@@ -1,0 +1,67 @@
+[
+  {
+    "id": "9451464c-e096-43ea-9f10-f5214059bb7f",
+    "title": "Silla Gamer",
+    "description": "Silla con diseño gamer, color negro/naranja",
+    "code": "COUG-006",
+    "price": 249.99,
+    "status": true,
+    "stock": 10,
+    "category": "Muebles",
+    "thumbnails": [
+      "img/silla-gamer.jpeg"
+    ]
+  },
+  {
+    "id": "dd84b233-e054-4713-a1f6-18df31341ea6",
+    "title": "Teclado Mecánico",
+    "description": "Teclado mecánico compacto retroiluminado",
+    "code": "REDR-003",
+    "price": 45.99,
+    "status": true,
+    "stock": 35,
+    "category": "Periféricos",
+    "thumbnails": [
+      "img/teclado-redragon.jpg"
+    ]
+  },
+  {
+    "id": "fe328323-c98b-4c33-b33a-4b2b590a05c5",
+    "title": "Mouse gamer",
+    "description": "MOUSE ADATA RGB",
+    "code": "LOGI-002",
+    "price": 19.99,
+    "status": true,
+    "stock": 50,
+    "category": "Periféricos",
+    "thumbnails": [
+      "img/mouse-gamer.jpeg"
+    ]
+  },
+  {
+    "id": "60a5edc7-1951-4457-b15a-d65a4a36aa4d",
+    "title": "Rascador para Gatos",
+    "description": "Rascador con plataforma , para mantener las uñas de tu gato saludables.",
+    "code": "CAT-001",
+    "price": 79.99,
+    "status": true,
+    "stock": 15,
+    "category": "Mascotas",
+    "thumbnails": [
+      "img/rascador-gato.jpg"
+    ]
+  },
+  {
+    "id": "bc2c8a5e-1f0e-40cf-bc05-eb21410d839e",
+    "title": "Juguete Pajaro",
+    "description": "Movimientos y Sonidos Realistas: Simula la caza de un pájaro, promoviendo la actividad y el ejercicio.",
+    "code": "CAT-004",
+    "price": 25,
+    "status": true,
+    "stock": 40,
+    "category": "Mascotas",
+    "thumbnails": [
+      "img/juguete-pajaro-gato.jpg"
+    ]
+  }
+]

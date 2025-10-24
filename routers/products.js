@@ -1,26 +1,30 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid'; //generar IDs únicos
 
+import ProductManager from "../managers/ProductManager.js"; // Ruta donde esta el json
+
 const router = express.Router();  // Crea el router de Express
 
-// creo array vacio de productos
-let products = [];
+
+// creo la ruta donde van a estar almacenado los productos
+const productManager = new ProductManager();
+
 
 // GET /api/products/ Lista todos los productos
 router.get('/', (req, res) => {
-    res.json(products);
+    res.json(productManager.getProducts());
 });
 
 
 // GET /api/products/:pid  Traer producto por id
 router.get('/:pid', (req, res) => {
-    const product = products.find(p => p.id === req.params.pid); // compara id de los productos
+    const product = productManager.getProductById(req.params.pid); // compara id de los productos
 
     if (!product) return res.status(404).json({ error: 'Producto no encontrado' }); //Si no existe, error 404
     res.json(product);
 });
 
-// POST /api/products/  Agregar un nuevo producto
+// POST /api/products/  crea un nuevo producto
 router.post('/', (req, res) => {
     const { title, description, code, price, status, stock, category, thumbnails } = req.body;
 
@@ -41,34 +45,24 @@ router.post('/', (req, res) => {
         thumbnails
     };
 
-    products.push(newProduct);  // Agrega el nuevo producto al array
+    productManager.addProduct(newProduct); 
+    //Agrega el nuevo producto a la ruta donde se encuetra json
 
     res.status(201).json(newProduct);// mensaje que creo el producto
 });
 
-// PUT /api/products/:pid  Actualizar un producto
-router.put('/:pid', (req, res) => {
-
-    // Buscar el producto por id si cuyo id coenside
-    const productIndex = products.findIndex(p => p.id === req.params.pid); 
-
-    if (productIndex === -1) return res.status(404).json({ error: 'Producto no encontrado' });                      
-    
-
-    //actualiza los datos y sobre escribe el producto
-    const updatedProduct = { ...products[productIndex], ...req.body, id: products[productIndex].id };
-    products[productIndex] = updatedProduct; //reemplaza 
-
-    res.json(updatedProduct);
+// PUT /api/products/:pid  Actualizar producto
+router.put("/:pid", (req, res) => {
+    const datamodifi = productManager.updateProduct(req.params.pid, req.body);
+    if (!datamodifi) return res.status(404).json({ error: "Producto no encontrado" });
+    res.json(datamodifi);
 });
 
 // DELETE /api/products/:pid  Eliminar un producto
-router.delete('/:pid', (req, res) => {
-    const productIndex = products.findIndex(p => p.id === req.params.pid);
-    if (productIndex === -1) return res.status(404).json({ error: 'Producto no encontrado' });
-
-    const deletedProduct = products.splice(productIndex, 1);
-    res.json({ message: 'Producto eliminado', product: deletedProduct[0] });
+router.delete("/:pid", (req, res) => {
+    const deleted = productManager.deleteProduct(req.params.pid);
+    if (!deleted) return res.status(404).json({ error: "Producto no encontrado" });
+    res.json({ message: "Producto eliminado", product: deleted });
 });
 
 export default router;

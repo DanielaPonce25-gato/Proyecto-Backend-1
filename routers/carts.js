@@ -1,60 +1,33 @@
 
 import express from 'express';
-import { v4 as uuidv4 } from 'uuid'; //generar IDs únicos
+
+import CartManager from "../managers/CartManager.js"; // Ruta donde esta el json
 
 const router = express.Router();  // Crea el router de Express
 
-// creo array vacio de carrito
-let carts = [];
+// creo la ruta donde van a estar almacenado el carrito
+const cartManager = new CartManager();
 
 
-router.post('/', (req, res) => {
-
-    const newCart = {
-        id: uuidv4(), 
-        products: [] // Inicia vacío
-    };
-
-    carts.push(newCart);
+// creo carrito
+router.post("/", (req, res) => {
+    const newCart = cartManager.createCart();
     res.status(201).json(newCart);
 });
 
 
 // Para ver el carrito
-
-router.get('/:cid', (req, res) => {
-
-    const cart = carts.find(c => c.id === req.params.cid);
-
-    if (!cart) {
-        return res.status(404).json({ error: 'Carrito no encontrado' });
-    }
-
+router.get("/:cid", (req, res) => {
+    const cart = cartManager.getCartById(req.params.cid);
+    if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
     res.json(cart.products);
 });
 
 
 // Para Agregar productos al carrito 
-
-router.post('/:cid/product/:pid', (req, res) => {
-
-
-    const cart = carts.find(c => c.id === req.params.cid);
-
-    if (!cart) {
-        return res.status(404).json({ error: 'Carrito no encontrado' });
-    }
-
-    const productId = req.params.pid;
-
-    const existingProduct = cart.products.find(p => p.product === productId);
-
-    if (existingProduct) {
-        existingProduct.quantity += 1;
-    } else {
-        cart.products.push({ product: productId, quantity: 1 });
-    }
-
+router.post("/:cid/product/:pid", (req, res) => {
+    const cart = cartManager.addProductToCart(req.params.cid, req.params.pid);
+    if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
     res.status(201).json(cart);
 });
 
