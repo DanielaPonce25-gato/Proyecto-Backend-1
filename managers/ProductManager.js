@@ -1,9 +1,12 @@
+
+
 import fs from "fs"; // me permite leer y escribir archivos en el sistema
 
 import path from "path"; // me ayuda a manejar las rutas de archivo
 
 import { fileURLToPath } from "url"; // contiene la cadena URL (fileURLToPath) del archivo
 
+import { v4 as uuidv4 } from "uuid"; // genera id
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +23,22 @@ export default class ProductManager {
 
         // Carga los productos al archivo usando el método load
         this.products = this.loadProducts();
+
+
+        let updated = false;
+
+        this.products = this.products.map(p => {
+            if (!p.id) {       // Si el producto no tiene ID...
+                p.id = uuidv4();  // ...se lo asignamos
+                updated = true;
+            }
+            return p;
+        });
+
+        if (updated) {
+            this.saveProducts();
+            console.log("Se agregaron IDs faltantes automáticamente.");
+        }
     }
 
     loadProducts() {
@@ -57,12 +76,14 @@ export default class ProductManager {
     }
 
     getProductById(id) {
+        id = id.trim();
         return this.products.find(p => p.id === id); //Busca y devuelve el producto cuyo id coincide
     }
 
 
     // Actualiza el producto existente
     updateProduct(id, updatedFields) {
+        id = id.trim();
         const index = this.products.findIndex(p => p.id === id);
         if (index === -1) return null;
         this.products[index] = { ...this.products[index], ...updatedFields };
@@ -72,6 +93,7 @@ export default class ProductManager {
 
     // Eliminar un producto
     deleteProduct(id) {
+        id = id.trim();
         const index = this.products.findIndex(p => p.id === id);
         if (index === -1) return null;
         const deleted = this.products.splice(index, 1);

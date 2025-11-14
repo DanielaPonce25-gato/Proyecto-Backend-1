@@ -1,0 +1,24 @@
+
+<h1>🛍️ MercadoLive</h1>
+
+<h2>Lista de Productos</h2>
+
+{{#if products.length}}
+    <ul>
+        {{#each products}}
+            <li>
+                <strong>{{this.title}}</strong><br>
+                <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}" width="200"><br>
+                Descripción: {{this.description}} <br>
+                Precio: ${{this.price}} <br>
+                Código: {{this.code}} <br>
+                Stock: {{this.stock}} unidades
+            </li>
+            <hr>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No hay productos cargados todavía.</p>
+{{/if}}
+
+<p><a href="/realtimeproducts">Ver productos en tiempo real</a></p>

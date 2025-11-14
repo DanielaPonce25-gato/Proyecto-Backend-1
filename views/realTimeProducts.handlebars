@@ -1,0 +1,81 @@
+
+                                    {{!-- A tiempo real --}}
+<h1>🛍️ MercadoLive</h1>
+
+<!-- Lista de productos -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Código</th>
+            <th>Precio</th>
+            <th>Status</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody id="productTable"></tbody>
+</table>
+
+<hr>
+
+<h1>Gestión de Productos en Tiempo Real</h1>
+
+<!-- Formulario para agregar productos -->
+<h3>Agregar nuevo producto</h3>
+<form id="productForm">
+    <input type="text" name="title" placeholder="Título" required>
+    <input type="text" name="description" placeholder="Descripción" required>
+    <input type="text" name="code" placeholder="Código" required>
+    <input type="number" name="price" placeholder="Precio" required>
+    <select name="status" required>
+        <option value="true">Disponible</option>
+        <option value="false">No disponible</option>
+    </select>
+    <input type="number" name="stock" placeholder="Stock" required>
+    <input type="text" name="category" placeholder="Categoría" required>
+    <input type="text" name="thumbnails" placeholder="Ruta imagen (img/ejemplo.jpg)" required>
+    <button type="submit">Agregar producto</button>
+</form>
+
+<hr>
+
+<!-- Formulario para eliminar productos -->
+<h3>Eliminar producto</h3>
+<form id="deleteForm">
+    <input type="text" name="id" placeholder="ID del producto a eliminar" required>
+    <button type="submit">Eliminar producto</button>
+</form>
+
+
+<hr>
+
+<!-- Formulario para modificar productos -->
+<h3>Modificar producto</h3>
+<form id="updateForm">
+    <input type="text" name="id" placeholder="ID del producto" required>
+    <input type="text" name="title" placeholder="Nuevo título">
+    <input type="text" name="description" placeholder="Nueva descripción">
+    <input type="text" name="code" placeholder="Nuevo código">
+    <input type="number" name="price" placeholder="Nuevo precio">
+    <select name="status">
+        <option value="">Selecciona estado</option>
+        <option value="true">Disponible</option>
+        <option value="false">No disponible</option>
+    </select>
+    <input type="number" name="stock" placeholder="Nuevo stock">
+    <input type="text" name="category" placeholder="Nueva categoría">
+    <input type="text" name="thumbnails" placeholder="Nueva ruta imagen">
+    <button type="submit">Modificar producto</button>
+</form>
+
+
+
+<!-- Importamos Socket.io y nuestro JS -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>

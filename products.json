@@ -1,25 +1,12 @@
 [
   {
-    "id": "9451464c-e096-43ea-9f10-f5214059bb7f",
-    "title": "Silla Gamer",
-    "description": "Silla con diseño gamer, color negro/naranja",
-    "code": "COUG-006",
-    "price": 249.99,
-    "status": true,
-    "stock": 10,
-    "category": "Muebles",
-    "thumbnails": [
-      "img/silla-gamer.jpeg"
-    ]
-  },
-  {
     "id": "dd84b233-e054-4713-a1f6-18df31341ea6",
     "title": "Teclado Mecánico",
     "description": "Teclado mecánico compacto retroiluminado",
     "code": "REDR-003",
-    "price": 45.99,
+    "price": 30000,
     "status": true,
-    "stock": 35,
+    "stock": 23,
     "category": "Periféricos",
     "thumbnails": [
       "img/teclado-redragon.jpg"
@@ -62,6 +49,32 @@
     "category": "Mascotas",
     "thumbnails": [
       "img/juguete-pajaro-gato.jpg"
+    ]
+  },
+  {
+    "id": "fe0b5be3-f281-4268-9768-d1ab9db99c02",
+    "status": true,
+    "title": "Silla Gamer",
+    "description": "diseño gamer de tono  naranja/negro",
+    "code": "SH5U",
+    "price": 60000,
+    "stock": 30,
+    "category": "Gamer",
+    "thumbnails": [
+      "img/silla-gamer.jpeg"
+    ]
+  },
+  {
+    "id": "1578a7a7-f691-4ab9-a319-aea4a75a1cc4",
+    "status": true,
+    "title": "Notebook Lenovo",
+    "description": "Una notebook de 15 pulgadas",
+    "code": "NB100",
+    "price": 40000,
+    "stock": 43,
+    "category": "tecnologia",
+    "thumbnails": [
+      "img/laptop-lenovo.jpeg"
     ]
   }
 ]
