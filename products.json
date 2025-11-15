@@ -63,18 +63,5 @@
     "thumbnails": [
       "img/silla-gamer.jpeg"
     ]
-  },
-  {
-    "id": "1578a7a7-f691-4ab9-a319-aea4a75a1cc4",
-    "status": true,
-    "title": "Notebook Lenovo",
-    "description": "Una notebook de 15 pulgadas",
-    "code": "NB100",
-    "price": 40000,
-    "stock": 43,
-    "category": "tecnologia",
-    "thumbnails": [
-      "img/laptop-lenovo.jpeg"
-    ]
   }
 ]
